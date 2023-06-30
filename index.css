@@ -1,5 +1,34 @@
 /*Not much is going to be done to this in the beginning so that I can focus on the javascript and stuff*/
+html{
+    height: 100%;
+    width: 100%;
+}
 
-h1{
-    color: blue;
+body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, a, p, cite, button{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+/*Main & Sections*/
+
+#main-hero{
+    display: flex;
+}
+
+#canvas{
+    display: flex;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    height: 75%;
+    width: 100%;
+    z-index: -1;
 }
