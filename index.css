@@ -1,7 +1,8 @@
 /*Not much is going to be done to this in the beginning so that I can focus on the javascript and stuff*/
 
-:root{
+:root{ /*Colors are not finished*/
     --text: rgb(0, 0, 0);
+    --light-text: rgb(255, 255, 255);
 }
 
 html{
@@ -40,6 +41,7 @@ nav{
     justify-content: center;
     height: 10vh;
     width: 100%;
+    background-color: rgb(31, 31, 205);
 }
 
 nav > a{
@@ -55,10 +57,11 @@ nav > a{
 }
 
 #primary-nav a{
-    color: var(--text);
+    color: var(--light-text);
 }
 
 #logo{
+    color: var(--light-text);
     letter-spacing: 1px;
     font-size: 1.5rem;
     font-weight: 800;
@@ -66,8 +69,9 @@ nav > a{
 
 #long-button{
     background-color: lightgreen;
+    color: var(--light-text);
     padding: 1vh 2vh;
-    border-radius: 0.5vh;
+    border-radius: 0.6rem;
 }
 
 /*Main & Sections*/
@@ -81,7 +85,5 @@ nav > a{
     position: absolute;
     align-self: center;
     justify-self: center;
-    height: 75%;
-    width: 100%;
     z-index: -1;
 }

@@ -10476,7 +10476,7 @@ var Common = __webpack_require__(0);
 
         var runner = Common.extend(defaults, options);
 
-        runner.delta = runner.delta || 1000 / runner.fps;
+        runner.delta = 1000 / runner.fps;
         runner.deltaMin = runner.deltaMin || 1000 / runner.fps;
         runner.deltaMax = runner.deltaMax || 1000 / (runner.fps * 0.5);
         runner.fps = 1000 / runner.delta;
