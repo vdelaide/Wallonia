@@ -1,3 +1,5 @@
+//CURRENT BUGS: Mouseconstraint not working to allow for picking up the bodies
+
 var Hero = Hero || {};
 const canvasElem = document.getElementById("canvas");
 
@@ -39,11 +41,12 @@ Hero.banner = function(){
     //bodies.rectangle(x, y, width, height)
     Composite.add(world, [
 
-        // ground
-        ground    = Bodies.rectangle(0, -75, VIEW.width, 10, { isStatic: true }),
+        // ground & ceiling, set it at the center, width of the canvas
+        ground    = Bodies.rectangle(VIEW.centerX, 100, VIEW.width, 10, { isStatic: true }),
+        ceiling   = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 10, {isStatic: true}),
+
 
         // walls
-        ceiling   = Bodies.rectangle(0, 0, VIEW.width, 10, {isStatic: true}),
         wallRight = Bodies.rectangle(0, 0, 80, 80, {isStatic: true}),
         wallLeft  = Bodies.rectangle(0, 200, 80, 80, {isStatic: true}),
 
@@ -99,7 +102,7 @@ Hero.banner = function(){
         Render.setPixelRatio(render, "auto");
     }
 
-    //Unhelpful for testing purposes, might have to make it more 'responsive' to see how it'd look on smaller screens
+    //Unhelpful for testing purposes, might have to update more often to have it be 'responsive'
     initializeCanvas(VIEW.width, (VIEW.height*0.75)) //Initializes the canvas to fit as a banner
 
 }
