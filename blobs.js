@@ -23,21 +23,26 @@ const engine = Engine.create();
 
 // create a renderer
 const render = Render.create({
+
     element: document.body,
     engine: engine,
+
     options: {
-        showDebug: true
+        showDebug: false
     }
+
 });
 
 Composite.add(engine.world, [
+
     // ground & ceiling, set it at the center of the width, give it width of the canvas, put ground at the end of the canvas
     ceiling = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 10, {isStatic: true}),
     ground = Bodies.rectangle(VIEW.centerX, (VIEW.height*0.9), VIEW.width, 10, { isStatic: true }),
 
     // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
     wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 10, VIEW.height, {isStatic: true}),
-    wallLeft = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, {isStatic: true}),
+    wallLeft = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, {isStatic: true})
+
 ]);
 
 // run the renderer
@@ -45,7 +50,7 @@ Render.run(render);
 const runner = Runner.create();
 Runner.run(runner, engine);
 
-engine.gravity.y = 0;
+engine.gravity.y = 0.1;
 
 function initializeCanvas(width, height) {
 
@@ -70,7 +75,7 @@ function initializeCanvas(width, height) {
     Render.setPixelRatio(render, "auto");
 }
 
-initializeCanvas(VIEW.width, (VIEW.height*0.9)) //Initializes the canvas to fit as a banner
+initializeCanvas(VIEW.width, (VIEW.height*0.9)) //Initializes the canvas to fit as a banner, and to not look low-quality
 
 //My understanding of how to do the aenism stuff:
 //Create 4 classes, one to distinguish all the matterbodies (that we'll use), another for an "article" or strip, another for the page nav,
@@ -80,43 +85,68 @@ initializeCanvas(VIEW.width, (VIEW.height*0.9)) //Initializes the canvas to fit 
 //Then, loop through all the matterbodies and check what class it has and filter it accordingly to give it a certain shape, behavior, location, etc
 //finally, push all those things into an object and adds it to the composite
 
-const bodiesDom = document.querySelectorAll('.matter-body');
+//Credits to @Aentan on Github for the code below, i just arranged it to fit to my project :)
+
+let bodiesDom = document.querySelectorAll('.matter-body');
 let bodies = [];
 
-console.log(bodiesDom)
+for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
-for(
-    let i = 0,
-    l = bodiesDom.length;
-    i < l; i++
-    ){
-    
-    // if (bodiesDom[i].classList.contains('strip')) {
+    var body = Bodies.rectangle( //Use var or it just doesn't work :P
 
-    // Strip
-    let body = Bodies.rectangle(
+        VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
+        VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
+        125, 75, //Width & Height, unresponsive for now
 
-    VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4,
-    VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4,
+        {
+            restitution:      0.5, //bounciness when bodies touch
+            friction:         0, //friction between bodies
 
-    VIEW.width * bodiesDom[i] / window.innerWidth,
-    VIEW.height * bodiesDom[i] / window.innerHeight, {
-        restitution:      0.5,
-        friction:         0,
-        frictionAir:      0.001,
-        frictionStatic:   0,
-        density:          1,
-        chamfer:          { radius: 24 },
-        angle:            (Math.random() * 2.000) - 1.000
+            frictionAir:      0.001,
+            frictionStatic:   0,
+
+            density:          1,
+            chamfer:          { radius: 12 }, //Border radius
+
+            angle:            (Math.random() * 2.000) - 1.000
         }
 
     );
-    // }
+
     bodiesDom[i].id = body.id;
     bodies.push(body);
 }
 
-console.log(bodies) //Undefined, maybe because i'm not filtering out classes anymore
-//HIGH PRIORITY BUG ^
+Composite.add(engine.world, bodies);
 
-Composite.add(engine.world, bodies)
+window.requestAnimationFrame(update); //Continually updates the HTML elements to be exactly on the matterbodies
+
+function update() {
+
+    // strips
+    for (let i = 0, l = bodiesDom.length; i < l; i++) {
+
+        let bodyDom = bodiesDom[i];
+        let body = null;
+
+        for (let j = 0, k = bodies.length; j < k; j++) {
+
+            if (bodies[j].id == bodyDom.id) {
+                body = bodies[j];
+                break;
+            }
+
+        }
+
+        if (body === null) continue;
+
+        bodyDom.style.transform =
+        "translate( " + (body.position.x) + "px, " + (body.position.y) + "px )";
+
+        bodyDom.style.transform += "rotate( " + body.angle + "rad )";
+
+    }
+
+    window.requestAnimationFrame(update);
+
+}

@@ -87,3 +87,16 @@ nav > a{
     justify-self: center;
     z-index: -1;
 }
+
+/* Matterbodies */
+
+.strip{
+    background-color: green;
+}
+
+.strip p{
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    color: blue;
+}
