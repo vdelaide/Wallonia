@@ -14,8 +14,6 @@ const Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
-    Mouse = Matter.Mouse, 
-    MouseConstraint = Matter.MouseConstraint,
     Composite = Matter.Composite;
 
 // create an engine
@@ -24,8 +22,10 @@ const engine = Engine.create();
 // create a renderer
 const render = Render.create({
 
-    element: document.body,
+    canvas: document.getElementById("canvas"),
+    element: document.getElementById("debug"),
     engine: engine,
+    background: "rgb(255, 255, 255)", 
 
     options: {
         showDebug: false
@@ -75,7 +75,7 @@ function initializeCanvas(width, height) {
     Render.setPixelRatio(render, "auto");
 }
 
-initializeCanvas(VIEW.width, (VIEW.height*0.9)) //Initializes the canvas to fit as a banner, and to not look low-quality
+initializeCanvas(VIEW.width, VIEW.height*0.9) //Initializes the canvas to fit as a banner, and to not look low-quality
 
 //My understanding of how to do the aenism stuff:
 //Create 4 classes, one to distinguish all the matterbodies (that we'll use), another for an "article" or strip, another for the page nav,
@@ -119,7 +119,7 @@ for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
 Composite.add(engine.world, bodies);
 
-window.requestAnimationFrame(update); //Continually updates the HTML elements to be exactly on the matterbodies
+window.requestAnimationFrame(update); //Continually transforms the HTML elements to be exactly on the matterbodies
 
 function update() {
 
@@ -140,9 +140,12 @@ function update() {
 
         if (body === null) continue;
 
+        //centers the element on top of the matterbody
         bodyDom.style.transform =
-        "translate( " + (body.position.x) + "px, " + (body.position.y) + "px )";
+        "translate( " + (body.position.x- bodyDom.offsetWidth / 2) + "px, " + 
+        (body.position.y - bodyDom.offsetHeight / 2) + "px )";
 
+        //rotates the element the sape as the matterbody
         bodyDom.style.transform += "rotate( " + body.angle + "rad )";
 
     }

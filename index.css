@@ -11,6 +11,7 @@ html{
 }
 
 body{
+    overflow: hidden;
     margin: 0;
     height: 100%;
     width: 100%;
@@ -22,6 +23,15 @@ h1, h2, h3, h4, h5, h6, a, p, cite, button{
     margin-block-end: 0;
     margin-inline-start: 0;
     margin-inline-end: 0;
+}
+
+ul{
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
 }
 
 li{
@@ -36,42 +46,54 @@ a{
 
 nav{
     display: grid;
-    grid-template: 1fr/1fr 1fr 1fr;
+    grid-template: 1fr/1fr 1fr;
     align-items: center;
     justify-content: center;
-    height: 10vh;
+    height: 7.5vh;
     width: 100%;
     background-color: rgb(31, 31, 205);
 }
 
-nav > a{
-    display: flex;
-    justify-self: center;
+nav a{
     width: fit-content;
 }
 
 #primary-nav{
     display: flex;
-    justify-content: space-around;
-    padding: 0 5vh;
+    align-items: center;
+    justify-content: right;
+    margin-right: 5vh;
 }
 
-#primary-nav a{
+#primary-nav > *{
+    padding: 0 2.5vh;
+}
+
+#primary-nav li{
+    padding: 1vh;
+}
+
+#primary-nav li:hover{
+    color: white;
+}
+
+#primary-nav li a{
+    font-size: 0.75rem;
     color: var(--light-text);
+}
+
+#searchbar input{
+    height: 3vh;
 }
 
 #logo{
+    display: flex;
+    justify-content: left;
+    margin-left: 5vh;
     color: var(--light-text);
     letter-spacing: 1px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 800;
-}
-
-#long-button{
-    background-color: lightgreen;
-    color: var(--light-text);
-    padding: 1vh 2vh;
-    border-radius: 0.6rem;
 }
 
 /*Main & Sections*/
@@ -86,17 +108,36 @@ nav > a{
     align-self: center;
     justify-self: center;
     z-index: -1;
+    background-color: yellow;
 }
 
 /* Matterbodies */
 
 .strip{
-    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    height: 75px;
+    width: 125px;
+    border-radius: 12px;
+    border: 5px solid brown;
+    background-color: white;
+}
+
+.strip:hover{
+    cursor: pointer;
+}
+
+.strip h2{
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
 
 .strip p{
+    font-size: 0.75rem;
+    width: fit-content;
     margin: 0;
     padding: 0;
-    width: fit-content;
     color: blue;
 }
