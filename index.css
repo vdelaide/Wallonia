@@ -1,6 +1,8 @@
 /*Not much is going to be done to this in the beginning so that I can focus on the javascript and stuff*/
 
 :root{ /*Colors are not finished*/
+    --bg-color: #b096ff;
+
     --text: rgb(104, 103, 103);
     --light-text: rgb(255, 255, 255);
     --dark-text: rgb(50, 49, 49);
@@ -16,6 +18,7 @@ body{
     margin: 0;
     height: 100%;
     width: 100%;
+    background-color: var(--bg-color);
 }
 
 h1, h2, h3, h4, h5, h6, a, p, cite, button{
@@ -96,7 +99,7 @@ nav a{
 
 #logo h2{
     padding-left: 1vh;
-    color: var(--dark-text);
+    color: var(--bg-color);
     letter-spacing: 1px;
     font-size: 1rem;
     font-weight: 800;
@@ -104,8 +107,18 @@ nav a{
 
 /*Main & Sections*/
 
-#main-hero{
+main{
+    height: 100%;
+    width: 100%;
+}
+
+#overlay{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #canvas{
@@ -116,16 +129,28 @@ nav a{
     z-index: -1;
 }
 
+/* Overlay */
+#overlay h1{
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: white;
+}
+
 /* Matterbodies */
 
-.strip, .socials, .large-matter{
+.matter-body{
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
     border-radius: 12px;
     border: 2px solid white; /*Needs to be compensated for otherwise the borders are clipping other bodies*/
-    background-color: yellow;
+    background-color: #E0B0FF;
+}
+
+.matter-body p, i, h2{
+    color: white;
 }
 
 .strip{
@@ -147,7 +172,6 @@ nav a{
     width: fit-content;
     margin: 0;
     padding: 0;
-    color: blue;
 }
 
 .socials{
@@ -156,6 +180,11 @@ nav a{
 }
 
 .large-matter{
+    justify-content: center;
     height: 100px;
     width: 100px;
+}
+
+.large-matter i{
+    font-size: 2.5rem;
 }

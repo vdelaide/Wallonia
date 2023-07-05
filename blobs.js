@@ -1,7 +1,13 @@
-const canvas = document.getElementById("canvas");
-const bgColor = '#c864f0';
-// strong purple: #c964ff
-
+const canvas  = document.getElementById("canvas");
+const bgColor = '#b096ff';
+/*
+COLORS:
+strong purple:    #c964ff
+lilac:            #E0B0FF - pleasant
+pale lilac:       #b096ff - pleasant, easier to see
+wisteria:         #B3AEFF - like lilac but more blue-ish, pleasant
+baby blue violet: #B0F5FF - pleasant, a bit difficult to see with white
+*/
 
 // Set up relative positions and scales to the user's window
 const VIEW = {};
@@ -25,12 +31,12 @@ const engine = Engine.create();
 // create a renderer
 const render = Render.create({
 
-    canvas: canvas,
+    canvas:  canvas,
     element: document.querySelector("main"), //parent element of the canvas
-    engine: engine,
+    engine:  engine,
 
     options: {
-        showDebug: false,
+        showDebug:  true,
         wireframes: false,
         background: bgColor
     }
@@ -50,12 +56,12 @@ Composite.add(engine.world, [
     // Bodies.rectangle(x-pos, y-pos, width, height, options)
 
     // ground & ceiling, set it at the center of the width, give it width of the canvas, put ground at the end of the canvas
-    ceiling = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 10, boundariesOpts),
-    ground = Bodies.rectangle(VIEW.centerX, (VIEW.height*0.9)+15, VIEW.width, 10, boundariesOpts),
+    ceiling   = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 10, boundariesOpts),
+    ground    = Bodies.rectangle(VIEW.centerX, (VIEW.height*0.9)+15, VIEW.width, 10, boundariesOpts),
 
     // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
     wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 10, VIEW.height, boundariesOpts),
-    wallLeft = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts)
+    wallLeft  = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts)
 
 ]);
 
@@ -68,14 +74,14 @@ engine.gravity.y = 0.1;
 
 function initializeCanvas(width, height) {
 
-    canvas.width = width;
-    canvas.height = height;
+    canvas.width          = width;
+    canvas.height         = height;
 
-    render.options.width = width;
+    render.options.width  = width;
     render.options.height = height;
 
-    render.canvas.width = render.options.width;
-    render.canvas.height = render.options.height;
+    render.canvas.width   = render.options.width;
+    render.canvas.height  = render.options.height;
 
     Render.lookAt(render, {
 
@@ -109,75 +115,57 @@ finally, push all those things into an object and adds it to the composite
 let bodiesDom = document.querySelectorAll('.matter-body');
 let bodies = [];
 
+const bodyOpts = {
+
+    restitution:      0.5, // bounciness when bodies touch
+    friction:         0, // friction between bodies
+
+    frictionAir:      0.001,
+    frictionStatic:   0,
+
+    density:          1,
+    chamfer:          { radius: 12 }, // Border radius
+
+    render:           {fillStyle: bgColor} // prevents the matterbodies from showing in case of lag
+
+}
+
 for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
     if (bodiesDom[i].classList.contains("strip")){
 
-        var body = Bodies.rectangle( //Use var or it just doesn't work :P
+        let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
+        
+        var body = Bodies.rectangle( // Use var or it just doesn't work :P
 
             VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
             VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
-            125, 75, //Width & Height, unresponsive for now
-
-            {
-                restitution:      0.5, // bounciness when bodies touch
-                friction:         0, // friction between bodies
-
-                frictionAir:      0.001,
-                frictionStatic:   0,
-
-                density:          1,
-                chamfer:          { radius: 12 }, // Border radius
-
-                angle:            (Math.random() * 2.000) - 1.000
-            }
+            125, 75, newBodyOpts
 
         );
 
     }
     else if (bodiesDom[i].classList.contains("socials")){
 
+        let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
+
         var body = Bodies.rectangle( //Use var or it just doesn't work :P
 
             VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
             VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
-            50, 50, //Width & Height, unresponsive for now
-
-            {
-                restitution:      0.5, // bounciness when bodies touch
-                friction:         0, // friction between bodies
-
-                frictionAir:      0.001,
-                frictionStatic:   0,
-
-                density:          1,
-                chamfer:          { radius: 12 }, // Border radius
-
-                angle:            (Math.random() * 2.000) - 1.000
-            }
+            50, 50, newBodyOpts
 
         );
     }
     else if (bodiesDom[i].classList.contains("large-matter")){
 
+        let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
+
         var body = Bodies.rectangle( //Use var or it just doesn't work :P
 
             VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
             VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
-            100, 100, //Width & Height, unresponsive for now
-
-            {
-                restitution:      0.5, // bounciness when bodies touch
-                friction:         0, // friction between bodies
-
-                frictionAir:      0.001,
-                frictionStatic:   0,
-
-                density:          1,
-                chamfer:          { radius: 12 }, // Border radius
-
-                angle:            (Math.random() * 2.000) - 1.000
-            }
+            100, 100, newBodyOpts
 
         );
     };
@@ -196,7 +184,7 @@ function update() {
     for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
         let bodyDom = bodiesDom[i];
-        let body = null;
+        let body    = null;
 
         for (let j = 0, k = bodies.length; j < k; j++) {
 
