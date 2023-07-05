@@ -1,8 +1,9 @@
 /*Not much is going to be done to this in the beginning so that I can focus on the javascript and stuff*/
 
 :root{ /*Colors are not finished*/
-    --text: rgb(0, 0, 0);
+    --text: rgb(104, 103, 103);
     --light-text: rgb(255, 255, 255);
+    --dark-text: rgb(50, 49, 49);
 }
 
 html{
@@ -51,7 +52,7 @@ nav{
     justify-content: center;
     height: 7.5vh;
     width: 100%;
-    background-color: rgb(31, 31, 205);
+    background-color: white;
 }
 
 nav a{
@@ -62,7 +63,7 @@ nav a{
     display: flex;
     align-items: center;
     justify-content: right;
-    margin-right: 5vh;
+    margin-right: 7.5vh;
 }
 
 #primary-nav > *{
@@ -79,7 +80,7 @@ nav a{
 
 #primary-nav li a{
     font-size: 0.75rem;
-    color: var(--light-text);
+    color: var(--text);
 }
 
 #searchbar input{
@@ -88,9 +89,14 @@ nav a{
 
 #logo{
     display: flex;
+    align-items: center;
     justify-content: left;
-    margin-left: 5vh;
-    color: var(--light-text);
+    margin-left: 7.5vh;
+}
+
+#logo h2{
+    padding-left: 1vh;
+    color: var(--dark-text);
     letter-spacing: 1px;
     font-size: 1rem;
     font-weight: 800;
@@ -108,21 +114,23 @@ nav a{
     align-self: center;
     justify-self: center;
     z-index: -1;
-    background-color: yellow;
 }
 
 /* Matterbodies */
 
-.strip{
+.strip, .socials, .large-matter{
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
+    border-radius: 12px;
+    border: 2px solid white; /*Needs to be compensated for otherwise the borders are clipping other bodies*/
+    background-color: yellow;
+}
+
+.strip{
     height: 75px;
     width: 125px;
-    border-radius: 12px;
-    border: 5px solid brown;
-    background-color: white;
 }
 
 .strip:hover{
@@ -140,4 +148,14 @@ nav a{
     margin: 0;
     padding: 0;
     color: blue;
+}
+
+.socials{
+    height: 50px;
+    width: 50px;
+}
+
+.large-matter{
+    height: 100px;
+    width: 100px;
 }
