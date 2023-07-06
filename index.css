@@ -46,6 +46,10 @@ a{
     text-decoration: none;
 }
 
+.important{ /*Anything that should be above the matterbodies*/
+    z-index: 1;
+}
+
 /* Header & Nav */
 
 nav{
@@ -130,6 +134,7 @@ main{
 }
 
 /* Overlay */
+
 #overlay h1{
     font-size: 3rem;
     font-weight: 800;
