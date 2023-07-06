@@ -38,7 +38,7 @@ const render = Render.create({
     options: {
         showDebug:  true,
         wireframes: false,
-        background: bgColor
+        background: "transparent"
     }
 
 });
@@ -70,7 +70,7 @@ Render.run(render);
 const runner = Runner.create();
 Runner.run(runner, engine);
 
-engine.gravity.y = 0.1;
+engine.gravity.scale = 0;
 
 function initializeCanvas(width, height) {
 
@@ -95,21 +95,6 @@ function initializeCanvas(width, height) {
 
 initializeCanvas(VIEW.width, VIEW.height) // Initializes the canvas to fit as a banner, and to not look low-quality
 
-/*
-My understanding of how to do the aenism stuff:
-
-Create 4 classes, one to distinguish all the matterbodies (that we'll use), 
-another for an "article" or strip, another for the page nav,
-and a final one to 'disturb' the other matterbodies, to make the page look more lively
-
-All things that you want to move on the screen will be given matterbodies, 
-then give it a strip class or a page nav to determine its shape,
-behavior, location, etc
-
-Then, loop through all the matterbodies and check what class it has and filter it accordingly to give it a certain shape, behavior, location, etc
-finally, push all those things into an object and adds it to the composite
-*/
-
 // Credits to @Aentan on Github for the code below, i just arranged it to fit to my project :)
 
 let bodiesDom = document.querySelectorAll('.matter-body');
@@ -124,51 +109,57 @@ const bodyOpts = {
     frictionStatic:   0,
 
     density:          1,
-    chamfer:          { radius: 12 }, // Border radius
+    chamfer:          { radius: 12 }, // border radius
 
-    render:           {fillStyle: bgColor} // prevents the matterbodies from showing in case of lag
+    render:           {fillStyle: "transparent"} // prevents the matterbodies from showing in case of lag
 
+}
+
+let body;
+
+function organizeBodies(type){
+
+    let bodyWidth;
+    let bodyHeight;
+
+    // necessary to have different angles for each body
+    let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
+
+    switch(type){
+
+        case "strip":
+            console.log('hi')
+            bodyWidth = 125;
+            bodyHeight = 125;
+            break;
+
+        case "socials":
+            bodyWidth = 50;
+            bodyHeight = 50;
+            break;
+
+        case "large-matter":
+            bodyWidth = 100;
+            bodyHeight = 100;
+            break;
+
+        default:
+            return console.error("No class given for type");
+            
+    };
+
+    body = Bodies.rectangle(
+
+        VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
+        VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
+        bodyWidth, bodyHeight, newBodyOpts
+
+    );
 }
 
 for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
-    if (bodiesDom[i].classList.contains("strip")){
-
-        let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
-        
-        var body = Bodies.rectangle( // Use var or it just doesn't work :P
-
-            VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
-            VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
-            125, 75, newBodyOpts
-
-        );
-
-    }
-    else if (bodiesDom[i].classList.contains("socials")){
-
-        let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
-
-        var body = Bodies.rectangle( //Use var or it just doesn't work :P
-
-            VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
-            VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
-            50, 50, newBodyOpts
-
-        );
-    }
-    else if (bodiesDom[i].classList.contains("large-matter")){
-
-        let newBodyOpts = Object.assign({}, bodyOpts, { angle: (Math.random() * 2.000) - 1.000 });
-
-        var body = Bodies.rectangle( //Use var or it just doesn't work :P
-
-            VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
-            VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
-            100, 100, newBodyOpts
-
-        );
-    };
+    organizeBodies(bodiesDom[i].classList.item(1));
 
     bodiesDom[i].id = body.id;
     bodies.push(body);
@@ -180,7 +171,6 @@ window.requestAnimationFrame(update); // Continually transforms the HTML element
 
 function update() {
 
-    // strips
     for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
         let bodyDom = bodiesDom[i];

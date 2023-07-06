@@ -53,7 +53,7 @@ nav{
     grid-template: 1fr/1fr 1fr;
     align-items: center;
     justify-content: center;
-    height: 7.5vh;
+    height: 3rem;
     width: 100%;
     background-color: white;
 }
@@ -66,15 +66,11 @@ nav a{
     display: flex;
     align-items: center;
     justify-content: right;
-    margin-right: 7.5vh;
-}
-
-#primary-nav > *{
-    padding: 0 2.5vh;
+    margin-right: 3rem;
 }
 
 #primary-nav li{
-    padding: 1vh;
+    padding: 0.5rem;
 }
 
 #primary-nav li:hover{
@@ -86,19 +82,23 @@ nav a{
     color: var(--text);
 }
 
+#searchbar{
+    padding-left: 0.5rem;
+}
+
 #searchbar input{
-    height: 3vh;
+    height: 1rem;
 }
 
 #logo{
     display: flex;
     align-items: center;
     justify-content: left;
-    margin-left: 7.5vh;
+    margin-left: 3rem;
 }
 
 #logo h2{
-    padding-left: 1vh;
+    padding-left: 1rem;
     color: var(--bg-color);
     letter-spacing: 1px;
     font-size: 1rem;
