@@ -168,11 +168,10 @@ main{
 .matter-body{
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: absolute;
     border-radius: 7px;
     border: 2px solid var(--primary-contrast); /*Needs to be compensated for otherwise the borders are clipping other bodies*/
-    background-color: var(--primary-color); /*#E0B0FF*/
+    background-color: var(--primary-color); /*#E0B0FF, colors should be less distracting*/
 }
 
 .matter-body p, i, h2{
@@ -181,32 +180,31 @@ main{
 }
 
 .strip{
+    justify-content: left;
     height: 73px;
     width: 123px;
 }
 
-.strip:hover{
-    cursor: pointer;
-}
-
 .strip h2{
     font-size: 1rem;
-    margin-bottom: 10px;
+    margin: 0.5rem 0 0.2rem 0.6rem;
 }
 
 .strip p{
     font-size: 0.75rem;
     width: fit-content;
-    margin: 0;
+    margin-left: 0.6rem;
     padding: 0;
 }
 
 .socials{
+    align-items: center;
     height: 48px;
     width: 48px;
 }
 
 .large-matter{
+    align-items: center;
     justify-content: center;
     height: 98px;
     width: 98px;

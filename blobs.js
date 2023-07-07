@@ -1,13 +1,52 @@
-const canvas  = document.getElementById("canvas");
-
 // Credits to @Aentan on Github for the starter code,
 // Heavily edited by @Vdelaide to accomodate/be more DRY
 
+const canvas  = document.getElementById("canvas");
+const bodiesDom = document.querySelectorAll('.matter-body');
+
+// Options for matterbodies
+const boundariesOpts = {
+
+    isStatic: true,
+    render: {
+        visible: false
+    }
+
+}
+
+const disturberOpts = {
+
+    restitution:      1, // bounciness when bodies touch
+    friction:         0, // friction between bodies
+
+    frictionAir:      0.001, //prevents them from getting too fast
+    frictionStatic:   0,
+
+    density:          1,
+
+    render:           {fillStyle: "transparent"}
+
+}
+
+const bodyOpts = {
+
+    restitution:      1,
+    friction:         1,
+
+    frictionAir:      0.001,
+    frictionStatic:   0,
+
+    density:          0.6,
+    chamfer:          { radius: 7 }, // border radius
+
+    render:           {fillStyle: "transparent"} // prevents the matterbodies from showing in case of lag
+
+}
 
 function initialize(){
 
-        // Set up relative positions and scales to the user's window
-    const VIEW = {};
+    // Set up relative positions and scales to the user's window
+    const VIEW    = {};
 
     VIEW.width    = window.innerWidth;
     VIEW.height   = window.innerHeight;
@@ -16,22 +55,23 @@ function initialize(){
     VIEW.centerY  = VIEW.height / 2;
 
     // module aliases
-    const Engine = Matter.Engine,
-        Render = Matter.Render,
-        Runner = Matter.Runner,
-        Body = Matter.Body,
-        Bodies = Matter.Bodies,
+    const Engine  = Matter.Engine,
+        Render    = Matter.Render,
+        Runner    = Matter.Runner,
+        Body      = Matter.Body,
+        Bodies    = Matter.Bodies,
         Composite = Matter.Composite;
 
-    // create an engine
-    const engine = Engine.create();
+    // create an engine & runner
+    const engine  = Engine.create();
+    const runner = Runner.create();
 
     // create a renderer
-    const render = Render.create({
+    const render  = Render.create({
 
-        canvas:  canvas,
-        element: document.querySelector("main"), //parent element of the canvas
-        engine:  engine,
+        canvas:   canvas,
+        element:  document.querySelector("main"), //parent element of the canvas
+        engine:   engine,
 
         options: {
             showDebug:  true,
@@ -41,14 +81,11 @@ function initialize(){
 
     });
 
-    const boundariesOpts = {
+    engine.gravity.scale = 0;
 
-        isStatic: true,
-        render: {
-            visible: false
-        }
-
-    }
+    // run the renderer & the engine
+    Render.run(render);
+    Runner.run(runner, engine);
 
     Composite.add(engine.world, [
         // Bodies.rectangle(x-pos, y-pos, width, height, options)
@@ -59,65 +96,24 @@ function initialize(){
 
         // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
         wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 10, VIEW.height, boundariesOpts),
-        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts)
+        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts),
+
+        //disturbers
+        distOne   = Bodies.rectangle(VIEW.centerX, VIEW.centerY, 30, 30, disturberOpts),
+        distTwo   = Bodies.rectangle(VIEW.centerX, VIEW.centerY, 30, 30, disturberOpts)
 
     ]);
 
-    // run the renderer
-    Render.run(render);
-    const runner = Runner.create();
-    Runner.run(runner, engine);
-
-    engine.gravity.scale = 0;
-
-    function initializeCanvas(width, height) {
-
-        canvas.width          = width;
-        canvas.height         = height;
-
-        render.options.width  = width;
-        render.options.height = height;
-
-        render.canvas.width   = render.options.width;
-        render.canvas.height  = render.options.height;
-
-        Render.lookAt(render, {
-
-            min: { x: 0, y: 0 },
-            max: { x: width, y: height }
-
-        });
-
-        Render.setPixelRatio(render, "auto");
-    }
-
-    initializeCanvas(VIEW.width, VIEW.height) // Initializes the canvas to fit as a banner, and to not look low-quality
-
-    let bodiesDom = document.querySelectorAll('.matter-body');
+    const disturbers = [distOne, distTwo];
     let bodies = [];
-
-    const bodyOpts = {
-
-        restitution:      1, // bounciness when bodies touch
-        friction:         1, // friction between bodies
-
-        frictionAir:      0.001,
-        frictionStatic:   0,
-
-        density:          0.6,
-        chamfer:          { radius: 7 }, // border radius
-
-        render:           {fillStyle: "transparent"} // prevents the matterbodies from showing in case of lag
-
-    }
-
     let body;
+
+    let bodyWidth;
+    let bodyHeight;
 
     function organizeBodies(type){
 
-        let bodyWidth;
-        let bodyHeight;
-        // random number between 10 and -10
+        // random number between 7 and -7, necessary to not have bodies go in 1 direction
         let randX = Math.ceil(Math.random() * 7) * (Math.round(Math.random()) ? 1 : -1);
         let randY = Math.ceil(Math.random() * 7) * (Math.round(Math.random()) ? 1 : -1);
 
@@ -127,17 +123,17 @@ function initialize(){
         switch(type){
 
             case "strip":
-                bodyWidth = 125;
+                bodyWidth  = 125;
                 bodyHeight = 75;
                 break;
 
             case "socials":
-                bodyWidth = 50;
+                bodyWidth  = 50;
                 bodyHeight = 50;
                 break;
 
             case "large-matter":
-                bodyWidth = 100;
+                bodyWidth  = 100;
                 bodyHeight = 100;
                 break;
 
@@ -168,10 +164,43 @@ function initialize(){
 
     Composite.add(engine.world, bodies);
 
+    function initializeCanvas(width, height) {
+
+        canvas.width          = width;
+        canvas.height         = height;
+
+        render.options.width  = width;
+        render.options.height = height;
+
+        render.canvas.width   = render.options.width;
+        render.canvas.height  = render.options.height;
+
+        Render.lookAt(render, {
+
+            min: { x: 0, y: 0 },
+            max: { x: width, y: height }
+
+        });
+
+        Render.setPixelRatio(render, "auto");
+    }
+
+    initializeCanvas(VIEW.width, VIEW.height) // Initializes the canvas to fit as a banner, and to not look low-quality
+
     window.requestAnimationFrame(update); // Continually transforms the HTML elements to be exactly on the matterbodies
 
     function update() {
 
+        //Randomly applies force to disturbers to make them disturb things
+        for (var i = 0, l = disturbers.length; i < l; i++) {
+            Body.applyForce(disturbers[i], disturbers[i].position,
+                {
+                    x: Math.ceil(Math.random() * 0.2) * (Math.round(Math.random()) ? 1 : -1), 
+                    y: Math.ceil(Math.random() * 0.2) * (Math.round(Math.random()) ? 1 : -1) 
+                });
+        };
+
+        //Matches the elements & matterbodies together
         for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
             let bodyDom = bodiesDom[i];
@@ -212,29 +241,21 @@ function debounce(func, wait, immediate) {
 
     return function() {
 
-      let context = this, args = arguments;
-      clearTimeout(timeout);
+        let context = this, args = arguments;
+        clearTimeout(timeout);
 
-      timeout = setTimeout(function(){
+        timeout = setTimeout(function(){
 
-        timeout = null;
+            timeout = null;
+            if (!immediate){func.apply(context, args)};
 
-        if (!immediate){
-            func.apply(context, args)
-        };
+        }, wait);
 
-      }, wait);
-
-      if (immediate && !timeout){
-        func.apply(context, args)
-      };
+        if (immediate && !timeout){func.apply(context, args)};
 
     };
-
-  }
+}
   
-  let refreshWorld = debounce(function() {
-    location.reload();
-  }, 500);
+let refreshWorld = debounce(function() {location.reload();}, 500);
   
 window.addEventListener('resize', refreshWorld);
