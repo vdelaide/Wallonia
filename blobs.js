@@ -1,13 +1,4 @@
 const canvas  = document.getElementById("canvas");
-const bgColor = '#b096ff';
-/*
-COLORS:
-strong purple:    #c964ff
-lilac:            #E0B0FF - pleasant
-pale lilac:       #b096ff - pleasant, easier to see
-wisteria:         #B3AEFF - like lilac but more blue-ish, pleasant
-baby blue violet: #B0F5FF - pleasant, a bit difficult to see with white
-*/
 
 // Credits to @Aentan on Github for the starter code,
 // Heavily edited by @Vdelaide to accomodate/be more DRY
@@ -107,14 +98,14 @@ function initialize(){
 
     const bodyOpts = {
 
-        restitution:      0.5, // bounciness when bodies touch
-        friction:         0, // friction between bodies
+        restitution:      1, // bounciness when bodies touch
+        friction:         1, // friction between bodies
 
         frictionAir:      0.001,
         frictionStatic:   0,
 
-        density:          1,
-        chamfer:          { radius: 12 }, // border radius
+        density:          0.6,
+        chamfer:          { radius: 7 }, // border radius
 
         render:           {fillStyle: "transparent"} // prevents the matterbodies from showing in case of lag
 
@@ -137,7 +128,7 @@ function initialize(){
 
             case "strip":
                 bodyWidth = 125;
-                bodyHeight = 125;
+                bodyHeight = 75;
                 break;
 
             case "socials":
