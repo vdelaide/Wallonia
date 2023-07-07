@@ -74,7 +74,7 @@ function initialize(){
         engine:   engine,
 
         options: {
-            showDebug:  true,
+            showDebug:  false,
             wireframes: false,
             background: "transparent"
         }
@@ -92,7 +92,7 @@ function initialize(){
 
         // ground & ceiling, set it at the center of the width, give it width of the canvas, put ground at the end of the canvas
         ceiling   = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 10, boundariesOpts),
-        ground    = Bodies.rectangle(VIEW.centerX, (VIEW.height*0.9)+15, VIEW.width, 10, boundariesOpts),
+        ground    = Bodies.rectangle(VIEW.centerX, (VIEW.height*0.9)+5, VIEW.width, 10, boundariesOpts),
 
         // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
         wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 10, VIEW.height, boundariesOpts),

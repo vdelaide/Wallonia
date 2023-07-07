@@ -3,6 +3,7 @@
 :root{ /*Colors are not finished*/
     --primary-color: rgb(19, 155, 19); /*Pale Lilac*/
     --primary-contrast: white;
+    --primary-contrast-weak: rgba(255, 255, 255, 0.9);
     --accent-color: black;
 
     --text: rgb(104, 103, 103);
@@ -68,7 +69,7 @@ nav{
     grid-template: 1fr/1fr 1fr;
     align-items: center;
     justify-content: center;
-    height: 3rem;
+    height: 4rem;
     width: 100%;
     background-color: var(--primary-contrast);
 }
@@ -169,32 +170,41 @@ main{
     display: flex;
     flex-direction: column;
     position: absolute;
+    justify-content: center;
     border-radius: 7px;
-    border: 2px solid var(--primary-contrast); /*Needs to be compensated for otherwise the borders are clipping other bodies*/
-    background-color: var(--primary-color); /*#E0B0FF, colors should be less distracting*/
+    border: 2px solid var(--primary-contrast-weak); /*Needs to be compensated for otherwise the borders are clipping other bodies*/
+    background-color: "transparent";
 }
 
 .matter-body p, i, h2{
-    color: var(--primary-contrast);
-    font-weight: 800;
+    color: var(--primary-contrast-weak);
+}
+
+.matter-body p{
+    font-weight: 700;
+}
+
+.matter-body h2:hover, .large-matter p:hover{
+    text-decoration: underline;
 }
 
 .strip{
-    justify-content: left;
     height: 73px;
     width: 123px;
 }
 
+.strip > *{
+    margin-left: 0.35rem;
+    width: fit-content;
+}
+
 .strip h2{
     font-size: 1rem;
-    margin: 0.5rem 0 0.2rem 0.6rem;
+    font-weight: 800;
 }
 
 .strip p{
     font-size: 0.75rem;
-    width: fit-content;
-    margin-left: 0.6rem;
-    padding: 0;
 }
 
 .socials{
@@ -203,9 +213,12 @@ main{
     width: 48px;
 }
 
+.socials i{
+    font-size: 1.5rem;
+}
+
 .large-matter{
     align-items: center;
-    justify-content: center;
     height: 98px;
     width: 98px;
 }
