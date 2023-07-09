@@ -4,7 +4,7 @@
     --primary-color: rgb(19, 155, 19); /*Pale Lilac*/
     --primary-contrast: white;
     --primary-contrast-weak: rgba(255, 255, 255, 0.9);
-    --accent-color: black;
+    --accent-color: rgb(173, 59, 59);
 
     --text: rgb(104, 103, 103);
     --light-text: rgb(255, 255, 255);
@@ -58,10 +58,6 @@ a{
     text-decoration: none;
 }
 
-.important{ /*Anything that should be above the matterbodies*/
-    z-index: 1;
-}
-
 /* Header & Nav */
 
 nav{
@@ -99,7 +95,7 @@ nav a{
 
 #primary-nav li a{
     font-size: 0.75rem;
-    color: var(--accent-color);
+    color: var(--dark-text);
 }
 
 #searchbar{
@@ -110,12 +106,18 @@ nav a{
     height: 1rem;
     padding: 0.4rem;
     border: 1px solid var(--accent-color);
+    color: var(--primary-color);
 }
 
 #searchbar input[type=text]:focus{
     caret-color: var(--primary-color); /*the blinking line thing when you click the searchbar*/
     outline: none;
 }
+
+#searchbar input[type=text]::placeholder{
+    color: var(--accent-color);
+}
+
 
 #logo{
     display: flex;
@@ -131,18 +133,14 @@ nav a{
     font-weight: 800;
 }
 
-/*Main & Sections*/
-
-main{
-    height: 100%;
-    width: 100%;
+#logo h2::selection{
+    background-color: var(--primary-color);
+    color: var(--primary-contrast);
 }
 
-#overlay{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
+/*Main & Canvas*/
+
+main{
     height: 100%;
     width: 100%;
 }
@@ -157,10 +155,61 @@ main{
 
 /* Overlay */
 
+#overlay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#overlay *{ /*Anything that should be above the matterbodies*/
+    z-index: 1;
+    width: fit-content;
+}
+
+#overlay *::selection {
+    background-color: var(--primary-contrast);
+    color: var(--primary-color);
+  }
+
+#overlay h1, h3{
+    color: var(--primary-contrast);
+}
+
 #overlay h1{
+    margin-top: 7.5rem;
     font-size: 3rem;
     font-weight: 800;
     letter-spacing: 1px;
+}
+
+#overlay h3{
+    margin-top: 1rem;
+}
+
+#overlay div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 5rem;
+    width: 75vh;
+}
+
+#overlay div > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5vh 3vh;
+    border-radius: 1vh;
+    background-color: white;
+    color: green;
+    font-weight: 900;
+}
+
+#overlay div > p{
+    font-weight: 400;
     color: var(--primary-contrast);
 }
 
@@ -178,6 +227,11 @@ main{
 
 .matter-body p, i, h2{
     color: var(--primary-contrast-weak);
+}
+
+.matter-body p::selection, i::selection, h2::selection{
+    background-color: var(--primary-contrast);
+    color: var(--primary-color);
 }
 
 .matter-body p{

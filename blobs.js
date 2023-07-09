@@ -16,7 +16,7 @@ const boundariesOpts = {
 
 const disturberOpts = {
 
-    restitution:      1, // bounciness when bodies touch
+    restitution:      0.8, // bounciness when bodies touch
     friction:         0, // friction between bodies
 
     frictionAir:      0.001, //prevents them from getting too fast
@@ -30,8 +30,8 @@ const disturberOpts = {
 
 const bodyOpts = {
 
-    restitution:      1,
-    friction:         1,
+    restitution:      0.5,
+    friction:         0,
 
     frictionAir:      0.001,
     frictionStatic:   0,
@@ -258,4 +258,3 @@ function debounce(func, wait, immediate) {
   
 let refreshWorld = debounce(function() {location.reload();}, 500);
   
-window.addEventListener('resize', refreshWorld);
