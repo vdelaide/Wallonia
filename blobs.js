@@ -14,26 +14,12 @@ const boundariesOpts = {
 
 }
 
-const disturberOpts = {
-
-    restitution:      0.8, // bounciness when bodies touch
-    friction:         0, // friction between bodies
-
-    frictionAir:      0.001, //prevents them from getting too fast
-    frictionStatic:   0,
-
-    density:          1,
-
-    render:           {fillStyle: "transparent"}
-
-}
-
 const bodyOpts = {
 
-    restitution:      0.5,
-    friction:         0,
+    restitution:      0.5, // bounciness when bodies touch
+    friction:         0, // friction between bodies
 
-    frictionAir:      0.001,
+    frictionAir:      0, //prevents them from getting too fast
     frictionStatic:   0,
 
     density:          0.6,
@@ -64,7 +50,7 @@ function initialize(){
 
     // create an engine & runner
     const engine  = Engine.create();
-    const runner = Runner.create();
+    const runner  = Runner.create();
 
     // create a renderer
     const render  = Render.create({
@@ -96,15 +82,10 @@ function initialize(){
 
         // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
         wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 10, VIEW.height, boundariesOpts),
-        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts),
-
-        //disturbers
-        distOne   = Bodies.rectangle(VIEW.centerX, VIEW.centerY, 30, 30, disturberOpts),
-        distTwo   = Bodies.rectangle(VIEW.centerX, VIEW.centerY, 30, 30, disturberOpts)
+        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts)
 
     ]);
 
-    const disturbers = [distOne, distTwo];
     let bodies = [];
     let body;
 
@@ -191,15 +172,6 @@ function initialize(){
 
     function update() {
 
-        //Randomly applies force to disturbers to make them disturb things
-        for (var i = 0, l = disturbers.length; i < l; i++) {
-            Body.applyForce(disturbers[i], disturbers[i].position,
-                {
-                    x: Math.ceil(Math.random() * 0.2) * (Math.round(Math.random()) ? 1 : -1), 
-                    y: Math.ceil(Math.random() * 0.2) * (Math.round(Math.random()) ? 1 : -1) 
-                });
-        };
-
         //Matches the elements & matterbodies together
         for (let i = 0, l = bodiesDom.length; i < l; i++) {
 
@@ -257,4 +229,5 @@ function debounce(func, wait, immediate) {
 }
   
 let refreshWorld = debounce(function() {location.reload();}, 500);
-  
+
+window.addEventListener("resize", refreshWorld)

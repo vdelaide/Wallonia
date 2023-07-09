@@ -1,6 +1,4 @@
-/*Not much is going to be done to this in the beginning so that I can focus on the javascript and stuff*/
-
-:root{ /*Colors are not finished*/
+:root{
     --primary-color: rgb(19, 155, 19); /*Pale Lilac*/
     --primary-contrast: white;
     --primary-contrast-weak: rgba(255, 255, 255, 0.9);
@@ -15,15 +13,6 @@ html{
     height: 100%;
     width: 100%;
 }
-
-/*
-COLORS:
-strong purple:    #c964ff
-lilac:            #E0B0FF - pleasant
-pale lilac:       #b096ff - pleasant, easier to see
-wisteria:         #B3AEFF - like lilac but more blue-ish, pleasant
-baby blue violet: #B0F5FF - pleasant, a bit difficult to see with white
-*/
 
 body{
     overflow: hidden;
@@ -118,7 +107,6 @@ nav a{
     color: var(--accent-color);
 }
 
-
 #logo{
     display: flex;
     align-items: center;
@@ -127,7 +115,6 @@ nav a{
 }
 
 #logo h2{
-    padding-left: 1rem;
     letter-spacing: 1px;
     font-size: 1rem;
     font-weight: 800;
@@ -136,6 +123,10 @@ nav a{
 #logo h2::selection{
     background-color: var(--primary-color);
     color: var(--primary-contrast);
+}
+
+#sidepanel{
+    display: none;
 }
 
 /*Main & Canvas*/
@@ -174,8 +165,9 @@ main{
     color: var(--primary-color);
   }
 
-#overlay h1, h3{
+#overlay h1, h3, p{
     color: var(--primary-contrast);
+    text-align: center;
 }
 
 #overlay h1{
@@ -210,7 +202,6 @@ main{
 
 #overlay div > p{
     font-weight: 400;
-    color: var(--primary-contrast);
 }
 
 /* Matterbodies */
@@ -279,4 +270,38 @@ main{
 
 .large-matter i{
     font-size: 2.5rem;
+}
+
+@media (max-width: 768px){
+
+    nav{
+        height: 3rem;
+    }
+
+    #overlay h1{
+        margin-top: 6rem;
+        font-size: 3rem;
+    }
+
+    #overlay h1 span{
+        display: block;
+    }
+
+    #overlay h3{
+        padding: 0 10vh; /*It's a cheap trick but it gets the job done*/
+    }
+
+    /*side panel styles*/
+
+    #primary-nav{
+        display: none;
+    }
+
+    #side-panel{
+        display: block;
+        justify-self: right;
+        margin-right: 3rem;
+        color: var(--primary-color);
+        font-size: 1.25rem;
+    }
 }
