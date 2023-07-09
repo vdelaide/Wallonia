@@ -5,6 +5,9 @@
         TODO:
         *Choose a favicon & logo
         *Add a mouse constraint
+        *Add actual links
+        *Add tab-indexes and stuff
+        *Add more meta data
     -->
 
     <head>
@@ -22,6 +25,8 @@
         
         <!-- MISC -->
         <title>Wallonia | Home</title>
+        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf-white.png">
+        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf-black.png" media="(prefers-color-scheme: dark)">
 
     </head>
 
@@ -34,10 +39,12 @@
             <nav>
 
 
-                <a href="#" id="logo"> <!--Not finished, will def add a different logo as well-->
+                <a href="index.html" id="logo"> <!--Not finished, will def add a different logo as well-->
 
+                    <img src="images/monstera-leaf-white.png" alt="A monstera leaf">
+                    <!--img above created by Roksana Beczarska on Flaticon.com-->
                     <h2>Wallonia</h2>
-                    
+
                 </a>
 
                 <ul id="primary-nav">
@@ -65,7 +72,7 @@
 
             <section id="overlay">
 
-                <h1>For All Your<span>Plant Needs</span></h1>
+                <h1>For All Your <span>Plant Needs</span></h1>
                 <h3>lorem ipsum dolor sit amet <span>moamor, colodrese</span></h3>
                 
                 <div>
@@ -125,8 +132,8 @@
 
         <script src="https://kit.fontawesome.com/30107543c9.js" crossorigin="anonymous"></script>
 
-        <script src="matter.js"></script>
-        <script src="blobs.js"></script>
+        <script src="javascript/matter.js"></script>
+        <script src="javascript/blobs.js"></script>
         <noscript><p>Javascript is necessary to view this page</p></noscript>
 
     </body>
