@@ -16,7 +16,7 @@ const boundariesOpts = {
 
 const bodyOpts = {
 
-    restitution:      0.5, // bounciness when bodies touch
+    restitution:      1, // bounciness when bodies touch
     friction:         0, // friction between bodies
 
     frictionAir:      0, //prevents them from getting too fast
@@ -77,12 +77,12 @@ function initialize(){
         // Bodies.rectangle(x-pos, y-pos, width, height, options)
 
         // ground & ceiling, set it at the center of the width, give it width of the canvas, put ground at the end of the canvas
-        ceiling   = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 10, boundariesOpts),
-        ground    = Bodies.rectangle(VIEW.centerX, (VIEW.height*0.9)+5, VIEW.width, 10, boundariesOpts),
+        ceiling   = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 1, boundariesOpts),
+        ground    = Bodies.rectangle(VIEW.centerX, VIEW.height*0.925, VIEW.width, 1, boundariesOpts),
 
         // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
-        wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 10, VIEW.height, boundariesOpts),
-        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 10, VIEW.height, boundariesOpts)
+        wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 1, VIEW.height, boundariesOpts),
+        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 1, VIEW.height, boundariesOpts)
 
     ]);
 
@@ -166,7 +166,7 @@ function initialize(){
         Render.setPixelRatio(render, "auto");
     }
 
-    initializeCanvas(VIEW.width, VIEW.height) // Initializes the canvas to fit as a banner, and to not look low-quality
+    initializeCanvas(VIEW.width, VIEW.height*0.925) // Initializes the canvas to fit as a banner, and to not look low-quality
 
     window.requestAnimationFrame(update); // Continually transforms the HTML elements to be exactly on the matterbodies
 

@@ -7,7 +7,8 @@
         *Add a mouse constraint
         *Add actual links
         *Add tab-indexes and stuff
-        *Add more meta data
+        *Serve the images statically
+        *Tidy everything up
     -->
 
     <head>
@@ -16,17 +17,38 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--Links & Stylesheets-->
+        <!-- Links & Stylesheets -->
         <link rel="stylesheet" href="index.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         
+        <!-- SEO -->
+        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf-black.png" media="(prefers-color-scheme: dark)">
+        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf-white.png">
+
+        <meta name="description" content="Learn and shop about all things plant with Wallonia.">
+
         <!-- MISC -->
         <title>Wallonia | Home</title>
-        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf-white.png">
-        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf-black.png" media="(prefers-color-scheme: dark)">
+        <meta name="theme-color" content="#139b13">
+
+        <meta property="og:title" content="Wallonia">
+        <meta property="og:description" content="Learn and shop about all things plant with Wallonia.">
+        <meta property="og:site_name" content="https://vdelaide.github.io/Wallonia/">
+        <!--Change below-->
+        <meta property="og:image" content="https://vdelaide.github.io/Wallonia/">
+
+        <meta name="twitter:card" content="Learn and shop about all things plant with Wallonia.">
+        <meta name="twitter:site" content="@GatitaConRizos">
+        <meta name="twitter:creator" content="@GatitaConRizos">
+        <meta name="twitter:url" content="https://vdelaide.github.io/Wallonia/">
+        <meta name="twitter:title" content="Wallonia">
+        <meta name="twitter:description" content="Learn and shop about all things plant with Wallonia.">
+        <meta name="twitter:image" content="https://vdelaide.github.io/alaskan/alaskanReality.jpg">
+        <meta name="twitter:image:alt" content="Wallonia's Logo, a Monstera Deliciosa Leaf">
+
 
     </head>
 
@@ -63,6 +85,8 @@
                 </ul>
 
                 <i class="fa fa-bars" id="side-panel"></i>
+                
+                <button type="button" id="toggle">Toggle Overlay</button> <!--More complex button later-->
 
             </nav>
             
@@ -134,6 +158,7 @@
 
         <script src="javascript/matter.js"></script>
         <script src="javascript/blobs.js"></script>
+        <script src="javascript/index.js"></script>
         <noscript><p>Javascript is necessary to view this page</p></noscript>
 
     </body>

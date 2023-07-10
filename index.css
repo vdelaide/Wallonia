@@ -9,6 +9,10 @@
     --dark-text: rgb(50, 49, 49);
 }
 
+::selection{
+    background-color: transparent;
+}
+
 html{
     height: 100%;
     width: 100%;
@@ -54,7 +58,7 @@ nav{
     grid-template: 1fr/1fr 1fr;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 7.5vh;
     width: 100%;
     background-color: var(--primary-contrast);
 }
@@ -87,6 +91,11 @@ nav a{
     color: var(--dark-text);
 }
 
+#primary-nav li a::selection{
+    background-color: var(--primary-color);
+    color: var(--primary-contrast);
+}
+
 #searchbar{
     padding-left: 0.5rem;
 }
@@ -101,6 +110,10 @@ nav a{
 #searchbar input[type=text]:focus{
     caret-color: var(--primary-color); /*the blinking line thing when you click the searchbar*/
     outline: none;
+}
+
+#searchbar input[type=text]::selection{
+    background-color: transparent;
 }
 
 #searchbar input[type=text]::placeholder{
@@ -139,7 +152,7 @@ nav a{
 /*Main & Canvas*/
 
 main{
-    height: 100%;
+    height: fit-content;
     width: 100%;
 }
 
@@ -158,7 +171,7 @@ main{
     flex-direction: column;
     align-items: center;
     position: absolute;
-    height: 100%;
+    height: fit-content;
     width: 100%;
 }
 
