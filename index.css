@@ -7,6 +7,12 @@
     --text: rgb(104, 103, 103);
     --light-text: rgb(255, 255, 255);
     --dark-text: rgb(50, 49, 49);
+
+    --button-size-w: calc(var(--button-size-h)*2);
+    --button-size-h: 20px;
+
+    --dark: rgb(50, 50, 50);
+    --dark-contrast: rgb(255, 255, 255);
 }
 
 ::selection{
@@ -53,7 +59,71 @@ a{
 
 /* Header & Nav */
 
-nav{
+#small-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 4vh;
+    width: 100%;
+    background-color: var(--primary-contrast-weak);
+    color: var(--primary-color)
+}
+
+#small-nav div{
+    height: fit-content;
+    width: fit-content;
+}
+  
+#small-nav label{
+    display: flex;
+    width: var(--button-size-w);
+    height: var(--button-size-h);
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    cursor: pointer;
+}
+  
+#small-nav input{
+    position: absolute;
+    display: none;
+}
+  
+.slider{
+    position: absolute;
+    width: var(--button-size-w);
+    height: var(--button-size-h);
+    border-radius: 50px;
+    transition: 0.3s;
+}
+  
+#small-nav input:checked ~ .slider{
+    background-color: var(--dark);
+}
+  
+.slider::before{
+    content: "";
+    position: absolute;
+    top: calc(var(--button-size-h)*0.1);
+    left: calc(var(--button-size-w)*0.1);
+    width: calc(var(--button-size-h)*0.75);
+    height: calc(var(--button-size-h)*0.75);
+    border-radius: 50%;
+    background-color: var(--primary-contrast);
+    box-shadow: none;
+    transition: 0.3s;
+}
+  
+#small-nav input:checked ~ .slider::before {
+    transform: translateX(
+        calc(var(--button-size-w)*0.4)
+    );
+    box-shadow: inset calc(var(--button-size-w)*0.15) -4px 0px 0px var(--dark-contrast);
+    background-color: var(--dark);
+}
+  
+/*--------------------------------------------------------------------------*/  
+
+#normal-nav{
     display: grid;
     grid-template: 1fr/1fr 1fr;
     align-items: center;
@@ -63,7 +133,7 @@ nav{
     background-color: var(--primary-contrast);
 }
 
-nav a{
+#normal-nav a{
     width: fit-content;
 }
 

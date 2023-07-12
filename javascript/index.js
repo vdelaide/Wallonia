@@ -1,16 +1,20 @@
 const overlay = document.getElementById("overlay");
-const button = document.getElementById("toggle");
+const button = document.getElementById("overlay-toggle");
 
-let toggle = true;
+let btnToggle = true;
 
 button.addEventListener("click", function(){
-    if (toggle === false){
-        console.log("hi")
+
+    if (btnToggle === false){
+
         overlay.style.visibility = "visible";
-        toggle = true;
-    } else if (toggle === true){
-        console.log("yo")
+        btnToggle = true;
+
+    } else if (btnToggle === true){
+
         overlay.style.visibility = "hidden";
-        toggle = false;
+        btnToggle = false;
+
     }
+
 });
