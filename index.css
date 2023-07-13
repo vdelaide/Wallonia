@@ -12,6 +12,7 @@
     --accent-color: #037a81;
 
     --text: rgb(103, 103, 103);
+    --green-text: rgb(19, 155, 19);
     --text-light: rgba(255, 255, 255, 0.9);
     --dark-text: rgb(50, 49, 49);
 
@@ -69,7 +70,7 @@ a{
 #small-nav{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: right;
     height: 4vh;
     width: 100%;
     background-color: var(--primary-contrast-weak);
@@ -77,8 +78,17 @@ a{
 }
 
 #small-nav div{
+    display: flex;
+    align-items: center;
     height: fit-content;
     width: fit-content;
+    margin-right: 3rem;
+}
+
+#small-nav p{
+    font-size: 0.75rem;
+    margin-right: 0.75rem;
+    color: var(--green-text);
 }
   
 #small-nav label{
@@ -86,6 +96,7 @@ a{
     width: var(--button-size-w);
     height: var(--button-size-h);
     background-color: var(--primary-color);
+    outline: 1.5px solid var(--dark-contrast);
     border-radius: 50px;
     cursor: pointer;
 }
@@ -117,7 +128,7 @@ a{
     border-radius: 50%;
     background-color: var(--primary-contrast);
     box-shadow: none;
-    transition: 0.3s;
+    transition: all 0.3s;
 }
   
 #small-nav input:checked ~ .slider::before {
@@ -128,8 +139,6 @@ a{
     background-color: var(--dark);
 }
   
-/*--------------------------------------------------------------------------*/  
-
 #normal-nav{
     display: grid;
     grid-template: 1fr/1fr 1fr;
@@ -178,6 +187,7 @@ a{
     padding: 0.4rem;
     border: 1px solid var(--accent-color);
     color: var(--primary-color);
+    border-radius: 0.3rem;
 }
 
 #searchbar input[type=text]:focus{
@@ -397,5 +407,13 @@ main{
         margin-right: 3rem;
         color: var(--primary-color);
         font-size: 1.25rem;
+    }
+
+    #side-panel:hover{
+        cursor: pointer;
+    }
+
+    #side-panel:focus{
+        transform: rotateX('90deg');
     }
 }

@@ -3,12 +3,16 @@
 
     <!--
         TODO:
-        *Choose a favicon & logo
         *Add a mouse constraint
         *Add actual links
         *Add tab-indexes and stuff
         *Serve the images statically
         *Tidy everything up
+        *Style the searchbar a little more
+        *Add more blobs
+        *Work on mobile
+        *Add functionality to the sidepanel
+        *Create & design the sidepanel
     -->
 
     <head>
@@ -35,9 +39,9 @@
 
         <meta property="og:title" content="Wallonia">
         <meta property="og:description" content="Learn and shop about all things plant with Wallonia.">
-        <meta property="og:site_name" content="https://vdelaide.github.io/Wallonia/">
+        <meta property="og:site_name" content="Wallonia">
         <!--Change below-->
-        <meta property="og:image" content="https://vdelaide.github.io/Wallonia/">
+        <meta property="og:image" content="https://vdelaide.github.io/Wallonia/images/monstera-leaf.png">
 
         <meta name="twitter:card" content="Learn and shop about all things plant with Wallonia.">
         <meta name="twitter:site" content="@GatitaConRizos">
@@ -59,7 +63,8 @@
 
                 <div> <!--button from dribbble.com, Tim Silva-->
 
-                    <label>
+                    <p>Toggle Theme</p>
+                    <label id="label-theme">
 
                         <input type="checkbox" id="toggle-theme">
                         <span class="slider"></span>
@@ -70,7 +75,8 @@
 
                 <div> <!--button from dribbble.com, Tim Silva-->
 
-                    <label>
+                    <p>Toggle Overlay</p>
+                    <label id="label-overlay">
 
                         <input type="checkbox" id="toggle-overlay">
                         <span class="slider"></span>

@@ -8,6 +8,7 @@ const bodiesDom = document.querySelectorAll('.matter-body');
 const boundariesOpts = {
 
     isStatic: true,
+    restitution: 1,
     render: {
         visible: false
     }
