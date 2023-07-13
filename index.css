@@ -2,10 +2,17 @@
     --primary-color: rgb(19, 155, 19);
     --primary-contrast: rgb(255, 255, 255);
     --primary-contrast-weak: rgba(255, 255, 255, 0.9);
+
+    --secondary-color: rgb(255, 255, 255);
+    --secondary-contrast: rgb(0, 0, 0);
+    --secondary-contrast-weak: rgba(0, 0, 0, 0.9);
+
+    --logo: rgb(19, 155, 19);
+
     --accent-color: #037a81;
 
-    --text: rgb(104, 103, 103);
-    --light-text: rgb(255, 255, 255);
+    --text: rgb(103, 103, 103);
+    --text-light: rgba(255, 255, 255, 0.9);
     --dark-text: rgb(50, 49, 49);
 
     --button-size-w: calc(var(--button-size-h)*2);
@@ -130,14 +137,14 @@ a{
     justify-content: center;
     height: 7.5vh;
     width: 100%;
-    background-color: var(--primary-contrast);
+    background-color: var(--secondary-color);
 }
 
 #normal-nav a{
     width: fit-content;
 }
 
-#primary-nav li a, #logo h2{
+#primary-nav li a{
     color: var(--primary-color);
 }
 
@@ -152,13 +159,9 @@ a{
     padding: 0.5rem;
 }
 
-#primary-nav li:hover{
-    color: var(--primary-contrast);
-}
-
 #primary-nav li a{
     font-size: 0.75rem;
-    color: var(--dark-text);
+    color: var(--text);
 }
 
 #primary-nav li a::selection{
@@ -208,6 +211,7 @@ a{
     letter-spacing: 1px;
     font-size: 1rem;
     font-weight: 800;
+    color: var(--logo);
 }
 
 #logo h2::selection{
@@ -286,7 +290,7 @@ main{
     padding: 2.5vh 3vh;
     border-radius: 1vh;
     background-color: white;
-    color: green;
+    color: var(--primary-color);
     font-weight: 900;
 }
 
@@ -302,12 +306,12 @@ main{
     position: absolute;
     justify-content: center;
     border-radius: 7px;
-    border: 2px solid var(--primary-contrast-weak); /*Needs to be compensated for otherwise the borders are clipping other bodies*/
+    border: 2px solid var(--text-light); /*Needs to be compensated for otherwise the borders are clipping other bodies*/
     background-color: "transparent";
 }
 
 .matter-body p, i, h2{
-    color: var(--primary-contrast-weak);
+    color: var(--text-light);
 }
 
 .matter-body p::selection, i::selection, h2::selection{
