@@ -7,8 +7,6 @@
     --secondary-contrast: rgb(0, 0, 0);
     --secondary-contrast-weak: rgba(0, 0, 0, 0.9);
 
-    --logo: rgb(19, 155, 19);
-
     --accent-color: #037a81;
 
     --text: rgb(103, 103, 103);
@@ -28,12 +26,12 @@
 }
 
 html{
+    overflow: hidden;
     height: 100%;
     width: 100%;
 }
 
 body{
-    overflow: hidden;
     margin: 0;
     height: 100%;
     width: 100%;
@@ -82,6 +80,13 @@ a{
     align-items: center;
     height: fit-content;
     width: fit-content;
+}
+
+#div-theme, #div-overlay{
+    margin-right: 1rem;
+}
+
+#div-blob{
     margin-right: 3rem;
 }
 
@@ -121,7 +126,7 @@ a{
 .slider::before{
     content: "";
     position: absolute;
-    top: calc(var(--button-size-h)*0.1);
+    top: calc(var(--button-size-h)*0.11);
     left: calc(var(--button-size-w)*0.1);
     width: calc(var(--button-size-h)*0.75);
     height: calc(var(--button-size-h)*0.75);
@@ -221,7 +226,7 @@ a{
     letter-spacing: 1px;
     font-size: 1rem;
     font-weight: 800;
-    color: var(--logo);
+    color: var(--green-text);
 }
 
 #logo h2::selection{
@@ -236,7 +241,7 @@ a{
 /*Main & Canvas*/
 
 main{
-    height: fit-content;
+    height: 100%;
     width: 100%;
 }
 
@@ -391,8 +396,12 @@ main{
         display: block;
     }
 
-    #overlay h3{
-        padding: 0 10vh; /*It's a cheap trick but it gets the job done*/
+    #overlay h3 span{
+        display: block;
+    }
+
+    .removable{
+        display: none;
     }
 
     /*side panel styles*/

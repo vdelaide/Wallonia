@@ -6,13 +6,11 @@
         *Add a mouse constraint
         *Add actual links
         *Add tab-indexes and stuff
-        *Serve the images statically
         *Tidy everything up
-        *Style the searchbar a little more
-        *Add more blobs
         *Work on mobile
         *Add functionality to the sidepanel
         *Create & design the sidepanel
+        *Update blobs.js so that the elements only move when blobsState is false
     -->
 
     <head>
@@ -29,7 +27,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         
         <!-- SEO -->
-        <link rel="shortcut icon" type="image/png" href="images/monstera-leaf.png">
+        <link rel="shortcut icon" type="image/png"
+        href="https://vdelaide.github.io/Wallonia/images/monstera-leaf.png"
+        crossorigin="anonymous">
 
         <meta name="description" content="Learn and shop about all things plant with Wallonia.">
 
@@ -49,7 +49,7 @@
         <meta name="twitter:url" content="https://vdelaide.github.io/Wallonia/">
         <meta name="twitter:title" content="Wallonia">
         <meta name="twitter:description" content="Learn and shop about all things plant with Wallonia.">
-        <meta name="twitter:image" content="https://vdelaide.github.io/alaskan/alaskanReality.jpg">
+        <meta name="twitter:image" content="https://vdelaide.github.io/Wallonia/images/monstera-leaf.png">
         <meta name="twitter:image:alt" content="Wallonia's Logo, a Monstera Deliciosa Leaf">
 
 
@@ -61,7 +61,7 @@
 
             <nav id="small-nav">
 
-                <div> <!--button from dribbble.com, Tim Silva-->
+                <div id="div-theme"> <!--button from dribbble.com, Tim Silva-->
 
                     <p>Toggle Theme</p>
                     <label id="label-theme">
@@ -73,12 +73,24 @@
 
                 </div>
 
-                <div> <!--button from dribbble.com, Tim Silva-->
+                <div id="div-overlay"> <!--button from dribbble.com, Tim Silva-->
 
                     <p>Toggle Overlay</p>
                     <label id="label-overlay">
 
                         <input type="checkbox" id="toggle-overlay">
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+                <div id="div-blob"> <!--button from dribbble.com, Tim Silva-->
+
+                    <p>Toggle Blobs</p>
+                    <label id="label-blobs">
+
+                        <input type="checkbox" id="toggle-blobs">
                         <span class="slider"></span>
 
                     </label>
@@ -92,7 +104,8 @@
 
                 <a href="index.html" id="logo"> <!--Not finished, will def add a different logo as well-->
 
-                    <img src="images/monstera-leaf.png" alt="A monstera leaf">
+                    <img src="https://vdelaide.github.io/Wallonia/images/monstera-leaf.png"
+                    alt="A monstera leaf" crossorigin="anonymous">
                     <!--img above created by Roksana Beczarska on Flaticon.com-->
                     <h2>Wallonia</h2>
 
@@ -100,9 +113,9 @@
 
                 <ul id="primary-nav">
 
-                    <li><a href="#">Catalogue</a></li>
+                    <li><a href="#">Catalog</a></li>
                     <li><a href="#">Services</a></li>
-                    <li><a href="#">Inquire</a></li>
+                    <li><a href="#">Contact</a></li>
 
                     <div id="searchbar">
 
@@ -124,12 +137,12 @@
             <section id="overlay">
 
                 <h1>For All Your <span>Plant Needs</span></h1>
-                <h3>lorem ipsum dolor sit amet <span>moamor, colodrese</span></h3>
+                <h3>Learn and shop about <span>all things plant with Wallonia.</span></h3>
                 
                 <div>
 
                     <a href="#">Learn More</a>
-                    <p>Consectetur, adipisicing<br> elit y ducimus reard</p>
+                    <p>Let us help you create <br>your perfect plant library.</p>
                 
                 </div>
 
@@ -162,11 +175,38 @@
                 <p>Horticulture</p>
 
             </a>
+
+            <a href="#" class="matter-body strip removable">
+
+                <h2>Invasive Species in KC</h2>
+                <p>Ecology</p>
+
+            </a>
+
+            
+            <a href="#" class="matter-body strip removable">
+
+                <h2>Propogation 101</h2>
+                <p>Horticulture</p>
+
+            </a>
        
 
-            <a href="#" class="matter-body socials">
+            <a href="https://youtube.com" class="matter-body socials removable">
 
                 <i class="fa-brands fa-youtube"></i>
+
+            </a>
+
+            <a href="https://twitter.com" class="matter-body socials">
+
+                <i class="fa-brands fa-twitter"></i>
+
+            </a>
+
+            <a href="https://reddit.com" class="matter-body socials">
+
+                <i class="fa-brands fa-reddit-alien"></i>
 
             </a>
 
@@ -174,6 +214,13 @@
 
                 <i class="fa-brands fa-github"></i>
                 <p>Creator</p>
+
+            </a>
+
+            <a href="https://brm.io/matter-js/" class="matter-body large-matter removable">
+
+                <i class="fa-solid fa-book"></i>
+                <p>Matter.JS</p>
 
             </a>
 
