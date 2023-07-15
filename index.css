@@ -44,6 +44,8 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6, a, p, cite, button{
+    height: fit-content;
+    width: fit-content;
     font-family: "Noto Sans", "Gill Sans", "Gill Sans MT", sans-serif;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -69,6 +71,15 @@ a{
 }
 
 /* Header & Nav */
+
+#skip{
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 
 #small-nav{
     display: flex;
@@ -192,12 +203,12 @@ a{
     color: var(--primary-contrast);
 }
 
-#searchbar{
+.searchbar{
     padding-left: 0.5rem;
     padding-top: 0;
 }
 
-#searchbar input[type=text]{
+.searchbar input[type=text]{
     height: 0.8rem;
     padding: 0.4rem;
     border: 1px solid var(--accent-color);
@@ -205,16 +216,16 @@ a{
     border-radius: 0.3rem;
 }
 
-#searchbar input[type=text]:focus{
+.searchbar input[type=text]:focus{
     caret-color: var(--primary-color); /*the blinking line thing when you click the searchbar*/
     outline: none;
 }
 
-#searchbar input[type=text]::selection{
+.searchbar input[type=text]::selection{
     background-color: transparent;
 }
 
-#searchbar input[type=text]::placeholder{
+.searchbar input[type=text]::placeholder{
     color: var(--accent-color);
 }
 
@@ -393,7 +404,11 @@ main{
 
 @media (max-width: 768px){
 
-    nav{
+    #small-nav{
+        display: none;
+    }
+
+    #normal-nav{
         height: 3rem;
     }
 
@@ -426,6 +441,35 @@ main{
         margin-right: 3rem;
     }
 
+    #side-panel-layout{
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        align-items: center;
+        height: 100%;
+        width: 50vh;
+        background-color: green;
+    }
+
+    #side-panel-layout li{
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+        width: 100%;
+        background-color: red;
+    }
+
+    #side-panel-layout li:hover{
+        cursor: pointer;
+        /*Add something that makes them a bit darker when hovered yea*/
+    }
+
+    #side-panel-layout a{
+        color: var(--text);
+    }
+
     #side-panel i{
         color: var(--primary-color);
         font-size: 1.25rem;
@@ -444,5 +488,9 @@ main{
     #side-panel input:checked + #bars{
         transform: rotate(-90deg);
     }
+
+    /* #side-panel input:checked ~ #side-panel-layout{
+        display: flex;
+    } */
 
 }

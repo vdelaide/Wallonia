@@ -4,7 +4,6 @@
     <!--
         TODO:
         *Add actual links
-        *Add tab-indexes and stuff
         *Tidy everything up
         *Work on mobile
         *Add functionality to the sidepanel
@@ -59,9 +58,11 @@
 
             <nav id="small-nav">
 
+                <div id="skip" tabindex="1"><a href="#main">Skip to Main Content</a></div>
+
                 <div id="div-theme"> <!--button from dribbble.com, Tim Silva-->
 
-                    <p>Toggle Theme</p>
+                    <p  tabindex="-1">Toggle Theme</p>
                     <label id="label-theme">
 
                         <input type="checkbox" id="toggle-theme">
@@ -73,7 +74,7 @@
 
                 <div id="div-overlay"> <!--button from dribbble.com, Tim Silva-->
 
-                    <p>Toggle Overlay</p>
+                    <p tabindex="-1">Toggle Overlay</p>
                     <label id="label-overlay">
 
                         <input type="checkbox" id="toggle-overlay">
@@ -85,7 +86,7 @@
 
                 <div id="div-blob"> <!--button from dribbble.com, Tim Silva-->
 
-                    <p>Toggle Blobs</p>
+                    <p  tabindex="-1">Toggle Blobs</p>
                     <label id="label-blobs">
 
                         <input type="checkbox" id="toggle-blobs">
@@ -111,14 +112,14 @@
 
                 <ul id="primary-nav">
 
-                    <li><a href="#">Catalog</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" tabindex="2">Catalog</a></li>
+                    <li><a href="#" tabindex="3">Services</a></li>
+                    <li><a href="#" tabindex="4">Contact</a></li>
 
-                    <li id="searchbar">
+                    <li class="searchbar">
 
                         <i class="fa fa-searchbar"></i>
-                        <input type="text" placeholder="Search...">
+                        <input type="text" placeholder="Search..."  tabindex="5">
 
                     </li>
 
@@ -129,57 +130,79 @@
                     <input type="checkbox">
                     <i class="fa fa-bars" id="bars"></i>
 
+                    <ul id="side-panel-layout">
+
+                        <!--Searchbar-->
+                        <li>
+
+                            <div class="searchbar">
+                                <i class="fa fa-searchbar"></i>
+                                <input type="text" placeholder="Search..."  tabindex="5">
+                            </div>
+    
+                        </li>
+                        <!--Toggles-->
+                        <li><p>toggletheme</p></li>
+                        <li><p>toggleoverlay</p></li>
+                        <li><p>toggleblobs</p></li>
+                        <!--Navigation-->
+                        <li><a href="#">Catalog</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+
+                    </ul>
+
                 </label>
                 
             </nav>
             
         </header>
 
-        <main>
+        <main id="main">
 
             <section id="overlay">
 
-                <h1>For All Your <span>Plant Needs</span></h1>
+                <h1 tabindex="6">For All Your <span>Plant Needs</span></h1>
                 <h3>Learn and shop about <span>all things plant with Wallonia.</span></h3>
                 
                 <div>
 
-                    <a href="#">Learn More</a>
+                    <a href="#" tabindex="7">Learn More</a>
                     <p>Let us help you create <br>your perfect plant library.</p>
                 
                 </div>
 
             </section>
 
-            <a href="#" class="matter-body strip">
+            <a href="#" class="matter-body strip" tabindex="8">
 
                 <h2>Pet Friendly<br> Plants</h2>
                 <p>Houseplants</p>
 
             </a>
 
-            <a href="#" class="matter-body strip">
+            <a href="#" class="matter-body strip" tabindex="9">
 
                 <h2>The Effects of<br> Insecticides</h2>
                 <p>Ecology</p>
 
             </a>
 
-            <a href="#" class="matter-body strip">
+            <a href="#" class="matter-body strip" tabindex="10">
 
                 <h2>Dead<br> Gardens</h2>
                 <p>Gardening</p>
 
             </a>
 
-            <a href="#" class="matter-body strip">
+            <a href="#" class="matter-body strip" tabindex="11">
 
                 <h2>Horticulture Automation</h2>
                 <p>Horticulture</p>
 
             </a>
 
-            <a href="#" class="matter-body strip removable">
+            <a href="#" class="matter-body strip removable" tabindex="12">
 
                 <h2>Invasive Species in KC</h2>
                 <p>Ecology</p>
@@ -187,7 +210,7 @@
             </a>
 
             
-            <a href="#" class="matter-body strip removable">
+            <a href="#" class="matter-body strip removable" tabindex="13">
 
                 <h2>Propogation 101</h2>
                 <p>Horticulture</p>
@@ -195,32 +218,32 @@
             </a>
        
 
-            <a href="https://youtube.com" class="matter-body socials removable">
+            <a href="https://youtube.com" class="matter-body socials removable" tabindex="14">
 
                 <i class="fa-brands fa-youtube"></i>
 
             </a>
 
-            <a href="https://twitter.com" class="matter-body socials">
+            <a href="https://twitter.com" class="matter-body socials" tabindex="15">
 
                 <i class="fa-brands fa-twitter"></i>
 
             </a>
 
-            <a href="https://reddit.com" class="matter-body socials">
+            <a href="https://reddit.com" class="matter-body socials" tabindex="16">
 
                 <i class="fa-brands fa-reddit-alien"></i>
 
             </a>
 
-            <a href="https://www.github.com/vdelaide" class="matter-body large-matter">
+            <a href="https://www.github.com/vdelaide" class="matter-body large-matter" tabindex="17">
 
                 <i class="fa-brands fa-github"></i>
                 <p>Creator</p>
 
             </a>
 
-            <a href="https://brm.io/matter-js/" class="matter-body large-matter removable">
+            <a href="https://brm.io/matter-js/" class="matter-body large-matter removable" tabindex="18">
 
                 <i class="fa-solid fa-book"></i>
                 <p>Matter.JS</p>
