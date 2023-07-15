@@ -1,3 +1,8 @@
+*{
+    transition: background-color 0.3s,
+    color 0.3s;
+}
+
 :root{
     --primary-color: rgb(19, 155, 19);
     --primary-contrast: rgb(255, 255, 255);
@@ -101,7 +106,7 @@ a{
     width: var(--button-size-w);
     height: var(--button-size-h);
     background-color: var(--primary-color);
-    outline: 1.5px solid var(--dark-contrast);
+    outline: 1.5px solid var(--primary-contrast);
     border-radius: 50px;
     cursor: pointer;
 }
@@ -116,11 +121,11 @@ a{
     width: var(--button-size-w);
     height: var(--button-size-h);
     border-radius: 50px;
-    transition: 0.3s;
+    transition: all 0.3s;
 }
   
 #small-nav input:checked ~ .slider{
-    background-color: var(--dark);
+    background-color: var(--primary-color);
 }
   
 .slider::before{
@@ -135,13 +140,20 @@ a{
     box-shadow: none;
     transition: all 0.3s;
 }
-  
-#small-nav input:checked ~ .slider::before {
+
+#div-theme input:checked ~ .slider::before {
     transform: translateX(
         calc(var(--button-size-w)*0.4)
     );
-    box-shadow: inset calc(var(--button-size-w)*0.15) -4px 0px 0px var(--dark-contrast);
-    background-color: var(--dark);
+    box-shadow: inset calc(var(--button-size-w)*0.15) -4px 0px 0px var(--primary-contrast);
+    background-color: var(--primary-color);
+}
+  
+#div-overlay input:checked ~ .slider::before, #div-blob input:checked ~ .slider::before{
+    transform: translateX(
+        calc(var(--button-size-w)*0.4)
+    );
+    box-shadow: inset calc(var(--button-size-w)*0.15) -4px 0px 0px var(--primary-contrast);
 }
   
 #normal-nav{
@@ -169,13 +181,10 @@ a{
     margin-right: 3rem;
 }
 
-#primary-nav li{
-    padding: 0.5rem;
-}
-
 #primary-nav li a{
     font-size: 0.75rem;
     color: var(--text);
+    padding: 0 0.5rem;
 }
 
 #primary-nav li a::selection{
@@ -185,6 +194,7 @@ a{
 
 #searchbar{
     padding-left: 0.5rem;
+    padding-top: 0;
 }
 
 #searchbar input[type=text]{
@@ -322,7 +332,7 @@ main{
     justify-content: center;
     border-radius: 7px;
     border: 2px solid var(--text-light); /*Needs to be compensated for otherwise the borders are clipping other bodies*/
-    background-color: "transparent";
+    background-color: transparent;
 }
 
 .matter-body p, i, h2{
@@ -411,18 +421,28 @@ main{
     }
 
     #side-panel{
-        display: block;
+        display: flex;
         justify-self: right;
         margin-right: 3rem;
+    }
+
+    #side-panel i{
         color: var(--primary-color);
         font-size: 1.25rem;
     }
 
-    #side-panel:hover{
+    #side-panel input{
+        display: none;
+        position: absolute;
         cursor: pointer;
     }
 
-    #side-panel:focus{
-        transform: rotateX('90deg');
+    #bars{
+        transition: all 0.25s;
     }
+
+    #side-panel input:checked + #bars{
+        transform: rotate(-90deg);
+    }
+
 }

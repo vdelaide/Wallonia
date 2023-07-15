@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
     <!--
         TODO:
-        *Add a mouse constraint
         *Add actual links
         *Add tab-indexes and stuff
         *Tidy everything up
         *Work on mobile
         *Add functionality to the sidepanel
         *Create & design the sidepanel
-        *Update blobs.js so that the elements only move when blobsState is false
     -->
 
     <head>
@@ -102,7 +100,7 @@
             <nav id="normal-nav">
 
 
-                <a href="index.html" id="logo"> <!--Not finished, will def add a different logo as well-->
+                <a href="/" id="logo"> <!--Not finished, will def add a different logo as well-->
 
                     <img src="https://vdelaide.github.io/Wallonia/images/monstera-leaf.png"
                     alt="A monstera leaf" crossorigin="anonymous">
@@ -117,16 +115,21 @@
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Contact</a></li>
 
-                    <div id="searchbar">
+                    <li id="searchbar">
 
                         <i class="fa fa-searchbar"></i>
                         <input type="text" placeholder="Search...">
 
-                    </div>
+                    </li>
 
                 </ul>
 
-                <i class="fa fa-bars" id="side-panel"></i>
+                <label id="side-panel">
+
+                    <input type="checkbox">
+                    <i class="fa fa-bars" id="bars"></i>
+
+                </label>
                 
             </nav>
             
