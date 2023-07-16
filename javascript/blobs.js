@@ -1,16 +1,14 @@
-// Credits to @Aentan on Github for the starter code,
-// Heavily edited by @Vdelaide to accomodate/be more DRY
-
-const canvas  = document.getElementById("canvas");
-const bodiesDom = document.querySelectorAll('.matter-body');
+const canvas = document.getElementById("canvas")
+const main = document.getElementById("main")
+const bodiesDom = document.querySelectorAll(".matter-body")
 
 // Options for matterbodies
 const boundariesOpts = {
 
-    isStatic: true,
-    restitution: 1,
+    isStatic:      true,
+    restitution:   1,
     render: {
-        visible: false
+        fillStyle: "transparent"
     }
 
 }
@@ -23,7 +21,7 @@ const bodyOpts = {
     frictionAir:      0, //prevents them from getting too fast
     frictionStatic:   0,
 
-    density:          0.6,
+    density:          0.5,
     chamfer:          { radius: 7 }, // border radius
 
     render:           {fillStyle: "transparent"} // prevents the matterbodies from showing in case of lag
@@ -31,15 +29,13 @@ const bodyOpts = {
 }
 
 function initialize(){
+    const dimensions   = {};
 
-    // Set up relative positions and scales to the user's window
-    const VIEW    = {};
+    dimensions.width   = main.clientWidth;
+    dimensions.height  = main.clientHeight;
 
-    VIEW.width    = window.innerWidth;
-    VIEW.height   = window.innerHeight;
-
-    VIEW.centerX  = VIEW.width / 2;
-    VIEW.centerY  = VIEW.height / 2;
+    dimensions.centerX = dimensions.width / 2;
+    dimensions.centerY = dimensions.height / 2;
 
     // module aliases
     const Engine  = Matter.Engine,
@@ -78,12 +74,12 @@ function initialize(){
         // Bodies.rectangle(x-pos, y-pos, width, height, options)
 
         // ground & ceiling, set it at the center of the width, give it width of the canvas, put ground at the end of the canvas
-        ceiling   = Bodies.rectangle(VIEW.centerX, 0, VIEW.width, 1, boundariesOpts),
-        ground    = Bodies.rectangle(VIEW.centerX, VIEW.height, VIEW.width, 1, boundariesOpts),
+        ceiling   = Bodies.rectangle(dimensions.centerX, 0, dimensions.width, 1, boundariesOpts),
+        ground    = Bodies.rectangle(dimensions.centerX, dimensions.height, dimensions.width, 1, boundariesOpts),
 
         // walls, set it at the center of the height, give it the height of the canvas, put wRight at the end of the canvas
-        wallRight = Bodies.rectangle(VIEW.width, VIEW.centerY, 1, VIEW.height, boundariesOpts),
-        wallLeft  = Bodies.rectangle(0, VIEW.centerY, 1, VIEW.height, boundariesOpts)
+        wallRight = Bodies.rectangle(dimensions.width, dimensions.centerY, 1, dimensions.height, boundariesOpts),
+        wallLeft  = Bodies.rectangle(0, dimensions.centerY, 1, dimensions.height, boundariesOpts)
 
     ]);
 
@@ -126,8 +122,8 @@ function initialize(){
 
         body = Bodies.rectangle(
 
-            VIEW.centerX + Math.floor(Math.random() * VIEW.width/2) - VIEW.width/4, // X-pos
-            VIEW.centerY + Math.floor(Math.random() * VIEW.height / 2) - VIEW.height / 4, //Y-POS
+            dimensions.centerX + Math.floor(Math.random() * dimensions.width/2) - dimensions.width/4, // X-pos
+            dimensions.centerY + Math.floor(Math.random() * dimensions.height / 2) - dimensions.height / 4, //Y-POS
             bodyWidth, bodyHeight, newBodyOpts
 
         );
@@ -145,7 +141,7 @@ function initialize(){
     }
 
     Composite.add(engine.world, bodies);
-
+   
     function initializeCanvas(width, height) {
 
         canvas.width          = width;
@@ -167,7 +163,7 @@ function initialize(){
         Render.setPixelRatio(render, "auto");
     }
 
-    initializeCanvas(VIEW.width, VIEW.height) // Initializes the canvas to fit as a banner, and to not look low-quality
+    initializeCanvas(dimensions.width, dimensions.height) // Initializes the canvas to fit as a banner, and to not look low-quality
 
     window.requestAnimationFrame(update); // Continually transforms the HTML elements to be exactly on the matterbodies
 
@@ -204,7 +200,7 @@ function initialize(){
 
     }
 
-}
+};
 
 initialize();
 
