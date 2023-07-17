@@ -8,6 +8,7 @@
         *Work on mobile
         *Add functionality to the sidepanel
         *Create & design the sidepanel
+        *Maybe make the canvas refresh when the browser is resized
     -->
 
     <head>
@@ -104,7 +105,7 @@
                 <a href="/" id="logo"> <!--Not finished, will def add a different logo as well-->
 
                     <img src="https://vdelaide.github.io/Wallonia/images/monstera-leaf.png"
-                    alt="A monstera leaf" crossorigin="anonymous">
+                    alt="Wallonia's logo, enter to go back to the home page" crossorigin="anonymous">
                     <!--img above created by Roksana Beczarska on Flaticon.com-->
                     <h2>Wallonia</h2>
 
@@ -127,7 +128,7 @@
 
                 <label id="side-panel">
 
-                    <input type="checkbox">
+                    <input type="checkbox" id="panel-toggle">
                     <i class="fa fa-bars" id="bars"></i>
 
                     <ul id="side-panel-layout">
@@ -135,10 +136,7 @@
                         <!--Searchbar-->
                         <li>
 
-                            <div class="searchbar">
-                                <i class="fa fa-searchbar"></i>
-                                <input type="text" placeholder="Search..."  tabindex="5">
-                            </div>
+                            <input type="text" placeholder="Search...">
     
                         </li>
                         <!--Toggles-->
@@ -163,7 +161,7 @@
             <section id="overlay">
 
                 <h1 tabindex="6">For All Your <span>Plant Needs</span></h1>
-                <h3>Learn and shop about <span>all things plant with Wallonia.</span></h3>
+                <h2>Learn and shop about <span>all things plant with Wallonia.</span></h2>
                 
                 <div>
 
@@ -176,35 +174,35 @@
 
             <a href="#" class="matter-body strip" tabindex="8">
 
-                <h2>Pet Friendly<br> Plants</h2>
+                <h3>Pet Friendly<br> Plants</h3>
                 <p>Houseplants</p>
 
             </a>
 
             <a href="#" class="matter-body strip" tabindex="9">
 
-                <h2>The Effects of<br> Insecticides</h2>
+                <h3>The Effects of<br> Insecticides</h3>
                 <p>Ecology</p>
 
             </a>
 
             <a href="#" class="matter-body strip" tabindex="10">
 
-                <h2>Dead<br> Gardens</h2>
+                <h3>Dead<br> Gardens</h3>
                 <p>Gardening</p>
 
             </a>
 
             <a href="#" class="matter-body strip" tabindex="11">
 
-                <h2>Horticulture Automation</h2>
+                <h3>Horticulture Automation</h3>
                 <p>Horticulture</p>
 
             </a>
 
             <a href="#" class="matter-body strip removable" tabindex="12">
 
-                <h2>Invasive Species in KC</h2>
+                <h3>Invasive Species in KC</h3>
                 <p>Ecology</p>
 
             </a>
@@ -212,7 +210,7 @@
             
             <a href="#" class="matter-body strip removable" tabindex="13">
 
-                <h2>Propogation 101</h2>
+                <h3>Propogation 101</h3>
                 <p>Horticulture</p>
 
             </a>
@@ -239,14 +237,14 @@
             <a href="https://www.github.com/vdelaide" class="matter-body large-matter" tabindex="17">
 
                 <i class="fa-brands fa-github"></i>
-                <p>Creator</p>
+                <h3>Creator</h3>
 
             </a>
 
             <a href="https://brm.io/matter-js/" class="matter-body large-matter removable" tabindex="18">
 
                 <i class="fa-solid fa-book"></i>
-                <p>Matter.JS</p>
+                <h3>Matter.JS</h3>
 
             </a>
 
