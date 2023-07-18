@@ -401,12 +401,12 @@ main{
 
 @media (max-width: 768px){
 
-    main{
-        height: 93%;
+    #small-nav{
+        justify-content: center;
     }
 
-    #small-nav{
-        display: none;
+    #div-blob{
+        margin-right: 0;
     }
 
     #overlay h1{
@@ -421,34 +421,13 @@ main{
     #overlay h3 span{
         display: block;
     }
+    
+    .searchbar{
+        display: flex;
+        align-items: center;
+    }
 
     .removable{
-        display: none;
-    }
-
-    #bars{
-        color: var(--primary-color);
-        font-size: 1.25rem;
-        transition: transform 0.25s;
-    }
-
-    #panel-toggle:checked + #bars{
-        transform: rotate(-90deg);
-    }
-
-    /*side panel styles*/
-
-    #primary-nav{
-        display: none;
-    }
-
-    #side-panel{
-        display: flex;
-        justify-self: right;
-        margin-right: 3rem;
-    }
-
-    #side-panel input{
         display: none;
     }
 
