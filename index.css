@@ -292,7 +292,7 @@ main{
     color: var(--primary-color);
   }
 
-#overlay h1, h3, p{
+#overlay h1, h2, p{
     color: var(--primary-contrast);
     text-align: center;
 }
@@ -343,11 +343,11 @@ main{
     background-color: transparent;
 }
 
-.matter-body p, i, h2{
+.matter-body p, i, h2, h3, h4{
     color: var(--text-light);
 }
 
-.matter-body p::selection, i::selection, h2::selection{
+.matter-body p::selection, i::selection, h3::selection{
     background-color: var(--primary-contrast);
     color: var(--primary-color);
 }
@@ -356,7 +356,7 @@ main{
     font-weight: 700;
 }
 
-.matter-body h2:hover, .large-matter p:hover{
+.matter-body h3:hover, .large-matter p:hover{
     text-decoration: underline;
 }
 
@@ -370,7 +370,7 @@ main{
     width: fit-content;
 }
 
-.strip h2{
+.strip h3{
     font-size: 1rem;
     font-weight: 800;
 }
@@ -401,6 +401,10 @@ main{
 
 @media (max-width: 768px){
 
+    main{
+        height: 93%;
+    }
+
     #small-nav{
         display: none;
     }
@@ -422,6 +426,16 @@ main{
         display: none;
     }
 
+    #bars{
+        color: var(--primary-color);
+        font-size: 1.25rem;
+        transition: transform 0.25s;
+    }
+
+    #panel-toggle:checked + #bars{
+        transform: rotate(-90deg);
+    }
+
     /*side panel styles*/
 
     #primary-nav{
@@ -434,58 +448,8 @@ main{
         margin-right: 3rem;
     }
 
-    #side-panel-layout{
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        margin-top: 33px;
-        right: 0;
-        align-items: center;
-        justify-content:space-between;
-        height: 100%;
-        width: 50%;
-        background-color: var(--primary-contrast-weak);
-        color: var(--primary-color);
-    }
-
-    #side-panel-layout li{
-        display: flex;
-        justify-content: center;
-        padding: 1rem 0;
-        width: 100%;
-    }
-
-    #side-panel-layout a{
-        color: inherit;
-    }
-
-    #side-panel-layout li:hover{
-        cursor: pointer;
-        /*Add something that makes them a bit darker when hovered yea*/
-    }
-
-    #side-panel i{
-        color: var(--primary-color);
-        font-size: 1.25rem;
-    }
-
-    #side-panel > input{
+    #side-panel input{
         display: none;
-        position: absolute;
-        cursor: pointer;
     }
-
-    #bars{
-        transition: transform 0.25s;
-    }
-
-    #panel-toggle:checked + #bars{
-        transform: rotate(-90deg);
-    }
-
-    /* #side-panel input:checked ~ #side-panel-layout{
-        display: flex;
-    } */
 
 }
